@@ -1,0 +1,100 @@
+import pygame
+from classes.Comment import *
+from constants import *
+from helpers import screen
+
+
+class Post:
+    """
+    A class used to represent post on Nitzagram
+    """
+
+    user_name = "Cris"
+
+    def __init__(self, image_src, location, description):
+        self.image_src = image_src
+        self.location = location
+        self.description = description
+        self.likes_counter = 0
+        self.comments = []
+        self.comments_display_index = 0
+
+
+
+    def display(self):
+        """
+        Display the Post image/Text, description, location, likes and comments
+        on screen
+
+        :return: None
+        """
+        self.display_content()
+        self.display_header()
+        self.display_likes()
+        self.display_comments()
+
+    def display_content(self):
+        img = pygame.image.load(self.image_src)
+        img = pygame.transform.scale(img,
+                                     (POST_WIDTH, POST_HEIGHT))
+        screen.blit(img, (POST_X_POS, POST_Y_POS))
+
+    def display_header(self):
+        location_font = pygame.font.SysFont("chalkduster.ttf", 15)
+        display_to_location = location_font.render(self.location, True, (134, 134, 134))
+        screen.blit(display_to_location, (LOCATION_TEXT_X_POS, LOCATION_TEXT_Y_POS))
+
+        description_font = pygame.font.SysFont("chalkduster.ttf", 15)
+        display_to_description = description_font.render(self.description, True, (50, 50, 50))
+        screen.blit(display_to_description, (DESCRIPTION_TEXT_X_POS, DESCRIPTION_TEXT_Y_POS))
+
+        username_font = pygame.font.SysFont("chalkduster.ttf", 15)
+        display_to_description = username_font.render(self.user_name, True, (50, 50, 50))
+        screen.blit(display_to_description, (USER_NAME_X_POS, USER_NAME_Y_POS))
+
+    def display_likes(self):
+        likes_font = pygame.font.SysFont("chalkduster.ttf", 15)
+        display_to_likes = likes_font.render(f"Liked by {self.likes_counter} users", True, BLACK)
+        screen.blit(display_to_likes, (LIKE_TEXT_X_POS, LIKE_TEXT_Y_POS))
+
+    def add_likes(self):
+        self.likes_counter += 1
+
+    def add_comment(self, comment_text):
+        comment = Comment(comment_text)
+        self.comments.append(comment)
+
+    def view_more_comments(self):
+        if self.comments_display_index == NUM_OF_COMMENTS_TO_DISPLAY - 1:
+            self.comments_display_index = 0
+        else:
+            self.comments_display_index += 1
+
+    def reset_comments_display_index(self):
+        self.comments_display_index = 0
+
+    def display_comments(self):
+        """
+        Display comments on post. In case there are more than 4
+        comments, show only 4 comments chosen by reset_comments_display_index
+
+        :return: None
+        """
+        position_index = self.comments_display_index
+        # If there are more than 4 comments, print "view more comments"
+        if len(self.comments) > NUM_OF_COMMENTS_TO_DISPLAY:
+            comment_font = pygame.font.SysFont('chalkduster.ttf',
+                                               COMMENT_TEXT_SIZE)
+            view_more_comments_button = comment_font.render("view more comments",
+                                                            True, LIGHT_GRAY)
+            screen.blit(view_more_comments_button, (VIEW_MORE_COMMENTS_X_POS,
+                                                    VIEW_MORE_COMMENTS_Y_POS))
+
+        # Display 4 comments starting from comments_display_index
+        for i in range(0, len(self.comments)):
+            if position_index >= len(self.comments):
+                position_index = 0
+            self.comments[position_index].display(i)
+            position_index += 1
+            if i >= NUM_OF_COMMENTS_TO_DISPLAY - 1:
+                break
