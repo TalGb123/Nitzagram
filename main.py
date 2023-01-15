@@ -26,6 +26,7 @@ def main():
     post3 = Post("images/ronaldo.jpg", "hello", "h11")
     post4 = Post("images/noa_kirel.jpg", "hello", "h11")
     post5 = Post("images/ronaldo.jpg", "hello", "h11")
+    post6 = Post("images/noa_kirel.jpg", "hello", "h11")
     post_list.append(post1)
     post_list.append(post2)
     post_list.append(post3)
