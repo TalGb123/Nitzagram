@@ -1,5 +1,6 @@
 import pygame
-from classes.Post import *
+from classes.ImagePost import ImagePost
+from classes.Textpost import TextPost
 from helpers import *
 from constants import *
 from test_methods import test_comment
@@ -20,18 +21,23 @@ def main():
     background = pygame.transform.scale(background,
                                         (WINDOW_WIDTH, WINDOW_HEIGHT))
 
+    post6 = TextPost(
+        "Israel",
+        "Hello World",
+        "How cool dnasjd nasdj asjd jasdn jsadn jas is text post",
+        (216, 79, 81), (71, 144, 205))
     post_list = []
-    post1 = Post("Images/ronaldo.jpg", "Dubai", "Something is going on here")
-    post2 = Post("images/noa_kirel.jpg", "hello", "h11")
-    post3 = Post("images/ronaldo.jpg", "hello", "h11")
-    post4 = Post("images/noa_kirel.jpg", "hello", "h11")
-    post5 = Post("images/ronaldo.jpg", "hello", "h11")
-    post6 = Post("images/noa_kirel.jpg", "hello", "h11")
+    post1 = ImagePost("Images/ronaldo.jpg", "Dubai", "Something is going on here")
+    post2 = ImagePost("images/noa_kirel.jpg", "hello", "h11")
+    post3 = ImagePost("images/ronaldo.jpg", "hello", "h11")
+    post4 = ImagePost("images/noa_kirel.jpg", "hello", "h11")
+    post5 = ImagePost("images/ronaldo.jpg", "hello", "h11")
     post_list.append(post1)
     post_list.append(post2)
     post_list.append(post3)
     post_list.append(post4)
     post_list.append(post5)
+    post_list.append(post6)
 
     # TODO: add a post here
 

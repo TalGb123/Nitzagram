@@ -11,15 +11,12 @@ class Post:
 
     user_name = "Cris"
 
-    def __init__(self, image_src, location, description):
-        self.image_src = image_src
+    def __init__(self, location, description):
         self.location = location
         self.description = description
         self.likes_counter = 0
         self.comments = []
         self.comments_display_index = 0
-
-
 
     def display(self):
         """
@@ -34,10 +31,7 @@ class Post:
         self.display_comments()
 
     def display_content(self):
-        img = pygame.image.load(self.image_src)
-        img = pygame.transform.scale(img,
-                                     (POST_WIDTH, POST_HEIGHT))
-        screen.blit(img, (POST_X_POS, POST_Y_POS))
+        pass
 
     def display_header(self):
         location_font = pygame.font.SysFont("chalkduster.ttf", 15)
