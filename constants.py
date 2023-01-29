@@ -87,6 +87,9 @@ BLACK = (0, 0, 0)
 GREY = (50, 50, 50)
 WHITE = (255, 255, 255)
 LIGHT_GRAY = (134, 134, 134)
+PURPLE = (30, 12, 121)
+
+opacity_test = 80
 
 # Add comment button proportions and position on the screen
 COMMENT_BUTTON_X_POST = 88*(2/3)

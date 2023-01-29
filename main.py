@@ -5,6 +5,7 @@ from helpers import *
 from constants import *
 from test_methods import test_comment
 from buttons import *
+from classes.Filter import *
 
 
 def main():
@@ -21,13 +22,15 @@ def main():
     background = pygame.transform.scale(background,
                                         (WINDOW_WIDTH, WINDOW_HEIGHT))
 
+    purple_filter = Filter(PURPLE, opacity_test)
+
     post6 = TextPost(
         "Israel",
         "Hello World",
         "How cool dnasjd nasdj asjd jasdn jsadn jas is text post",
         (216, 79, 81), (71, 144, 205))
     post_list = []
-    post1 = ImagePost("Images/ronaldo.jpg", "Dubai", "Something is going on here")
+    post1 = ImagePost("Images/ronaldo.jpg", "Dubai", "Something is going on here", purple_filter)
     post2 = ImagePost("images/noa_kirel.jpg", "hello", "h11")
     post3 = ImagePost("images/ronaldo.jpg", "hello", "h11")
     post4 = ImagePost("images/noa_kirel.jpg", "hello", "h11")
